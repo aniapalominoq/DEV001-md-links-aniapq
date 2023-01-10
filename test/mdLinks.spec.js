@@ -1,10 +1,12 @@
-const mdLinks = require('../src/mdLinks.js');
 
+import { mdLinks } from "../src/mdLinks.js";
 
 describe('mdLinks', () => {
 
-  it('should...', () => {
-    console.log('FIX ME!');
+   it('mdLinks is a function', () => {
+    expect(typeof mdLinks).toBe('function');
   });
+  
 
+ 
 });
