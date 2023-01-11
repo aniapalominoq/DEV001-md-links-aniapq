@@ -3,7 +3,8 @@ import {
   pathValidator,
   pathAbsolute,
   pathIsDirectory,
-  pathIsFile
+  pathIsFile,
+  readDirectorycontents
 } from "../src/functionsAll.js";
 import { mdLinks } from "../src/mdLinks.js";
 
@@ -58,7 +59,7 @@ describe('pathIsFile', () => {
   });
 });
 /** test  FUNCTION:pathIsDirectory */
-describe('pathIsDirectory', () => {
+ describe('pathIsDirectory', () => {
 
   it("is a function", () => {
     expect(typeof pathIsDirectory).toBe("function");
@@ -69,4 +70,14 @@ describe('pathIsDirectory', () => {
    it("should return FALSE", () => {
     expect(pathIsDirectory('README.md')).toBeFalsy();
   });
-});
+ }); 
+
+ /** test  FUNCTION:readDirectorycontents*/
+ describe('readDirectorycontents', () => {
+  it("is a function", () => {
+    expect(typeof readDirectorycontents).toBe("function");
+  });
+  it("should return an array with the files", () => {
+    expect(readDirectorycontents('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof')).toEqual([ 'ania-links.md', 'datos.text', 'documents' ]);
+  });
+ }); 

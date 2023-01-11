@@ -28,10 +28,8 @@ return result
  */
 export function pathIsFile(footpath) {
   const result = fs.statSync(footpath).isFile();
-  console.log(result);
   return result
 }
-pathIsFile('README.md')
 
 /**
  * funcion que prueba si es un directorio o carpeta
@@ -40,7 +38,18 @@ pathIsFile('README.md')
  */
 export function pathIsDirectory(footpath) {
   const result = fs.statSync(footpath).isDirectory();
-  console.log(result);
   return result
 }
-pathIsDirectory('./')
+
+
+/**
+ * funcion que lee el contenido de un directorio
+ *@param {string} footpath una ruta
+ *@returns {array} result  
+ */
+export function readDirectorycontents(footpath) {
+  const result = fs.readdirSync(footpath)
+  console.log(result)
+return result
+}
+readDirectorycontents('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof') 
