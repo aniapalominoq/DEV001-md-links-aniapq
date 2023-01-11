@@ -1,5 +1,4 @@
-import { existsSync, link } from 'node:fs';
-import chalk from 'chalk';
+import { existsSync } from 'node:fs';
 import path from 'path';
 
 /**
@@ -9,8 +8,6 @@ import path from 'path';
  */
 export function pathValidator(footpath) {
   const result = existsSync(footpath) ? true : false;
-  console.log(chalk.bgGreen(result));
-
    return result
 }
 
@@ -23,8 +20,5 @@ export function pathValidator(footpath) {
   */
 export function pathAbsolute(footpath) {
   const result = path.isAbsolute(footpath) ? footpath:path.resolve(footpath)
-     console.log(chalk.bgGreen(result));
-return result
-   
+return result 
 }
- pathAbsolute('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\datos.text')
