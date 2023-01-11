@@ -12,8 +12,6 @@ describe('mdLinks', () => {
  
 });
 /** test  FUNCTION:pathValidator*/
-
-/** test  FUNCTION:pathValidator*/
 describe('pathValidator', () => {
 
   it("is a function", () => {
@@ -26,6 +24,7 @@ describe('pathValidator', () => {
     expect(pathValidator('')).toBeFalsy();
   });
 });
+
 /** test  FUNCTION:pathAbsolute */
 describe('pathAbsolute', () => {
 

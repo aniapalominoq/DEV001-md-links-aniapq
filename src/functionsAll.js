@@ -1,4 +1,5 @@
 import { existsSync } from 'node:fs';
+import fs from 'fs';
 import path from 'path';
 
 /**
@@ -10,15 +11,36 @@ export function pathValidator(footpath) {
   const result = existsSync(footpath) ? true : false;
    return result
 }
-
-//pathValidator('./proof/datos.text')
-
  /** 
   * funcion  que convierte una ruta relativa en absoluta y si fuera absoluta la mantiene igual
   * @param {string} footpath una ruta
-  *@returns {string} la ruta absoluta 
+  *@returns {string} result  la ruta absoluta 
   */
 export function pathAbsolute(footpath) {
   const result = path.isAbsolute(footpath) ? footpath:path.resolve(footpath)
 return result 
 }
+
+/**
+ * funcion que prueba si es un archivo 
+ *@param {string} footpath una ruta
+ *@returns {boolean} result 
+ */
+export function pathIsFile(footpath) {
+  const result = fs.statSync(footpath).isFile();
+  console.log(result);
+  return result
+}
+pathIsFile('README.md')
+
+/**
+ * funcion que prueba si es un directorio o carpeta
+ *@param {string} footpath una ruta
+ *@returns {boolean} result  
+ */
+export function pathIsDirectory(footpath) {
+  const result = fs.statSync(footpath).isDirectory();
+  console.log(result);
+  return result
+}
+pathIsDirectory('./')
