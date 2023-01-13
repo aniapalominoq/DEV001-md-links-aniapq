@@ -1,12 +1,58 @@
 {
-  "name": "md-links",
-  "version": "0.1.0",
+  "name": "maskay-links-md",
+  "version": "1.0.0",
+ "bin":{
+    "maskay-links-md":"src/cli.js"
+  },
+
   "engines": {
     "node": ">=16.x"
   },
-  "bootcamp": {
-    "createdAt": "2022-11-16T21:49:06.371Z",
-    "version": "5.4.0",
-    "commit": "14aeca030be012fc987dcb1c604bbbcb0fdd325e"
+  "description": "maskay-links-md, es una libreria creada en Node.js , su objetivos es verificar el estado de todo los lins existentes dentro de un archivo con extension .md",
+  "main": "src/mdLinks.js",
+  "type": "module",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/node": "^7.20.7",
+    "@babel/preset-env": "^7.20.2",
+    "babel-jest": "^29.3.1",
+    "jest": "^29.3.1",
+    "nodemon": "^2.0.20"
+  },
+  "scripts": {
+    "lint": "eslint",
+    "build": "babel src -d dist",
+    "start": "npm run build && node dist/index.js",
+    "test": "node --experimental-vm-modules  node_modules/jest/bin/jest.js --env=node --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aniapalominoq/DEV001-md-links-aniapq.git"
+  },
+  "keywords": [
+    "markdown",
+    "links",
+    "javascript",
+    "search",
+    "link markdown",
+    "verify",
+    "md",
+    "mdLinks"
+    
+    
+  ],
+  "author": "Melania Palomino Quispe <aniapalominoq@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aniapalominoq/DEV001-md-links-aniapq/issues"
+  },
+  "homepage": "https://github.com/aniapalominoq/DEV001-md-links-aniapq#readme",
+ 
+  "dependencies": {
+    "axios": "^1.2.2",
+    "chalk": "^5.2.0"
   }
 }
