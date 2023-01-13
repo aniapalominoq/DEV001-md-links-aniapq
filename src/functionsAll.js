@@ -52,4 +52,24 @@ export function readDirectorycontents(footpath) {
   console.log(result)
 return result
 }
-readDirectorycontents('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof') 
+readDirectorycontents('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\documents')
+readDirectorycontents('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof')
+/**
+ * funcion que retorna la extension de una ruta
+ *@param {string} footpath una ruta
+ *@returns {string} result  
+ */
+export function readFileExtension(footpath) {
+  const result = path.extname(footpath)
+return result
+}
+
+
+/**
+ * funcion extrae todo los archivos con extension.md
+ *@param {string} footpath una ruta
+ *@returns {string} result  
+ */
+export function filtersFileExtensionMd(footpath) {
+  
+}

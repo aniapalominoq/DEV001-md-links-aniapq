@@ -4,6 +4,7 @@ import {
   pathAbsolute,
   pathIsDirectory,
   pathIsFile,
+  readFileExtension,
   readDirectorycontents
 } from "../src/functionsAll.js";
 import { mdLinks } from "../src/mdLinks.js";
@@ -81,3 +82,14 @@ describe('pathIsFile', () => {
     expect(readDirectorycontents('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof')).toEqual([ 'ania-links.md', 'datos.text', 'documents' ]);
   });
  }); 
+
+  /** test  FUNCTION:readFileExtension*/
+ describe('readFileExtension', () => {
+  it("is a function", () => {
+    expect(typeof readFileExtension).toBe("function");
+  });
+  it("from this path 'docMelania.xls', returns '.xls'", () => {
+    expect(readFileExtension('docMelania.xls')).toBe('.xls');
+  });
+ }); 
+

@@ -36,7 +36,13 @@
     "markdown",
     "links",
     "javascript",
-    "node js"
+    "search",
+    "link markdown",
+    "verify",
+    "md",
+    "mdLinks"
+    
+    
   ],
   "author": "Melania Palomino Quispe <aniapalominoq@gmail.com>",
   "license": "MIT",

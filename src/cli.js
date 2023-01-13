@@ -1,2 +1,2 @@
 import chalk from "chalk";
-console.log(chalk.greenBright('BIENVENIDO A maskay-links-md'))
+console.log(chalk.bgMagenta('   B I E N V E N I D O    -->   maskay-links-md   '  ))
