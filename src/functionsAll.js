@@ -49,11 +49,9 @@ export function pathIsDirectory(footpath) {
  */
 export function readDirectorycontents(footpath) {
   const result = fs.readdirSync(footpath)
-  console.log(result)
 return result
 }
-readDirectorycontents('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\documents')
-readDirectorycontents('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof')
+
 /**
  * funcion que retorna la extension de una ruta
  *@param {string} footpath una ruta
@@ -66,10 +64,13 @@ return result
 
 
 /**
- * funcion extrae todo los archivos con extension.md
- *@param {string} footpath una ruta
- *@returns {string} result  
+ * funcion extrae todo los archivos con extension.md de un directorio
+ *@param {array} arrayFile contenido de un directorio
+ *@returns {array} arrayResult,es un arreglo de archivos con extesion .md
  */
-export function filtersFileExtensionMd(footpath) {
-  
+export function filtersFileExtensionMd(arrayFile) {
+ return arrayFile.filter(e => e.includes('.md'))
 }
+
+
+console.log(filtersFileExtensionMd(['ania-links.md', 'apuntes.md', 'carpeta', 'cuentas.xls', 'curriculum.doc', 'datos.text', 'documents', 'JavaScript.md']))
