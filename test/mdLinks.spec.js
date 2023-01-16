@@ -6,7 +6,8 @@ import {
   pathIsFile,
   readFileExtension,
   filtersFileExtensionMd,
-  readDirectorycontents
+  readDirectorycontents,
+  findLinksFileContent
 } from "../src/functionsAll.js";
 import { mdLinks } from "../src/mdLinks.js";
 
@@ -26,7 +27,7 @@ describe('pathValidator', () => {
     expect(typeof pathValidator).toBe("function");
   });
   it("should return TRUE", () => {
-    expect(pathValidator('./proof/datos.text')).toBeTruthy();
+    expect(pathValidator('./proof/datos.txt')).toBeTruthy();
   });
    it("should return FALSE", () => {
     expect(pathValidator('')).toBeFalsy();
@@ -40,10 +41,10 @@ describe('pathAbsolute', () => {
     expect(typeof pathAbsolute).toBe("function");
   });
   it("should return the same path", () => {
-    expect(pathAbsolute('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\datos.text')).toBe('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\datos.text');
+    expect(pathAbsolute('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\datos.txt')).toBe('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\datos.txt');
   });
    it("should return path absolute", () => {
-    expect(pathAbsolute('./proof/datos.text')).toBe('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\datos.text');
+    expect(pathAbsolute('./proof/datos.txt')).toBe('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\datos.txt');
   });
 });
 
@@ -86,8 +87,9 @@ describe('pathIsFile', () => {
   'carpeta',
   'cuentas.xls',
   'curriculum.doc',
-  'datos.text',
+  'datos.txt',
   'documents',
+  'index.html',
   'JavaScript.md'
 ]);
   });
@@ -114,10 +116,25 @@ describe('pathIsFile', () => {
   'carpeta',
   'cuentas.xls',
   'curriculum.doc',
-  'datos.text',
+  'datos.txt',
   'documents',
   'JavaScript.md'
 ])).toEqual([ 'ania-links.md', 'apuntes.md', 'JavaScript.md' ]);
   });
  }); 
 
+/** test  FUNCTION:findLinksFileContent*/
+describe('findLinksFileContent', () => {
+  it("is a function", () => {
+    expect(typeof findLinksFileContent).toBe("function");
+  });
+  it("should return an array [{ href, text, file }, ...]", () => {
+    expect(findLinksFileContent('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md')).toEqual([
+  {
+    href: 'https://github.com/aniapalominoq',
+    text: 'my github',
+    path: 'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md'
+  }
+]) 
+  });
+ }); 

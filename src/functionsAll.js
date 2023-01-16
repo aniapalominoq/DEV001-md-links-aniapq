@@ -1,6 +1,9 @@
 import { existsSync } from 'node:fs';
 import fs from 'fs';
 import path from 'path';
+//import markdownLinkExtractor from 'markdown-link-extractor';
+//import linkCheck  from 'link-check';
+
 
 /**
  * funcion que valida si existe la ruta
@@ -62,15 +65,167 @@ export function readFileExtension(footpath) {
 return result
 }
 
-
 /**
  * funcion extrae todo los archivos con extension.md de un directorio
  *@param {array} arrayFile contenido de un directorio
- *@returns {array} arrayResult,es un arreglo de archivos con extesion .md
+ *@returns {array} es un arreglo de archivos con extension .md
  */
 export function filtersFileExtensionMd(arrayFile) {
  return arrayFile.filter(e => e.includes('.md'))
 }
 
 
-console.log(filtersFileExtensionMd(['ania-links.md', 'apuntes.md', 'carpeta', 'cuentas.xls', 'curriculum.doc', 'datos.text', 'documents', 'JavaScript.md']))
+
+/**
+ * funcion que retorna los link del contenido de un archivo .md
+ *@param {string} footpath una ruta absoluta
+ *@returns {array} linkFile [{href,text,path}]  
+ */
+export function findLinksFileContent(footpath) {
+  const linkFileMd=[]
+  const textContentMardown = fs.readFileSync(footpath, { encoding: 'utf8' });
+  const myRe = /\[([^\]]*)\]\(((?:\/|https?:\/\/)[\w\d./?=#&_%~,.:-]+)\)/gm;
+  textContentMardown.match(myRe).forEach((elem) => {
+    const text=elem.split("](")[0].slice(1)
+    const link = elem.split("](")[1].slice(0, -1)
+     linkFileMd.push( {
+        href: link,
+        text: text,
+        path:footpath,
+     });
+  });
+
+ return linkFileMd;
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
