@@ -2,11 +2,7 @@
 import {
   pathValidator,
   pathAbsolute,
-  pathIsDirectory,
-  pathIsFile,
-  readFileExtension,
-  filtersFileExtensionMd,
-  readDirectorycontents,
+  filtersPathsExtensionMd,
   findLinksFileContent
 } from "../src/functionsAll.js";
 import { mdLinks } from "../src/mdLinks.js";
@@ -48,78 +44,23 @@ describe('pathAbsolute', () => {
   });
 });
 
-/** test  FUNCTION:pathIsFile, */
-describe('pathIsFile', () => {
-
-  it("is a function", () => {
-    expect(typeof pathIsFile).toBe("function");
-  });
-  it("should return TRUE", () => {
-    expect(pathIsFile('README.md')).toBeTruthy();
-  });
-   it("should return FALSE", () => {
-    expect(pathIsFile('./proof')).toBeFalsy();
-  });
-});
-/** test  FUNCTION:pathIsDirectory */
- describe('pathIsDirectory', () => {
-
-  it("is a function", () => {
-    expect(typeof pathIsDirectory).toBe("function");
-  });
-  it("should return TRUE", () => {
-    expect(pathIsDirectory('./proof')).toBeTruthy();
-  });
-   it("should return FALSE", () => {
-    expect(pathIsDirectory('README.md')).toBeFalsy();
-  });
- }); 
-
- /** test  FUNCTION:readDirectorycontents*/
- describe('readDirectorycontents', () => {
-  it("is a function", () => {
-    expect(typeof readDirectorycontents).toBe("function");
-  });
-  it("should return an array with the files", () => {
-    expect(readDirectorycontents('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof')).toEqual([
-  'ania-links.md',
-  'apuntes.md',
-  'carpeta',
-  'cuentas.xls',
-  'curriculum.doc',
-  'datos.txt',
-  'documents',
-  'index.html',
-  'JavaScript.md'
-]);
-  });
- }); 
-
-  /** test  FUNCTION:readFileExtension*/
- describe('readFileExtension', () => {
-  it("is a function", () => {
-    expect(typeof readFileExtension).toBe("function");
-  });
-  it("from this path 'docMelania.xls', returns '.xls'", () => {
-    expect(readFileExtension('docMelania.xls')).toBe('.xls');
-  });
- }); 
    /** test  FUNCTION:filtersFileExtensionMd*/
- describe('filtersFileExtensionMd', () => {
+ describe('filtersPathsExtensionMd', () => {
   it("is a function", () => {
-    expect(typeof filtersFileExtensionMd).toBe("function");
+    expect(typeof filtersPathsExtensionMd).toBe("function");
   });
-  it("should return an array with the files .md", () => {
-    expect(filtersFileExtensionMd([
-  'ania-links.md',
-  'apuntes.md',
-  'carpeta',
-  'cuentas.xls',
-  'curriculum.doc',
-  'datos.txt',
-  'documents',
-  'JavaScript.md'
-])).toEqual([ 'ania-links.md', 'apuntes.md', 'JavaScript.md' ]);
+    it("independent if the path is absolute or relative returns an array of its absolute paths", () => {
+    expect(filtersPathsExtensionMd('proof/ania-links.md')).toEqual([ 'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md']);
+  });
+  it("must return the absolute path if it were a file of type .md inside an array", () => {
+    expect(filtersPathsExtensionMd('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md')).toEqual([ 'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md']);
+  });
+  it("should return an array of paths of all .md files that a directory contains", () => {
+    expect(filtersPathsExtensionMd('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof')).toEqual([
+  'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\ania-links.md',
+  'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\apuntes.md',
+  'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\JavaScript.md'
+]);
   });
  }); 
 
