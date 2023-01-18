@@ -25,61 +25,25 @@ return result
 }
 
 /**
- * funcion que prueba si es un archivo 
- *@param {string} footpath una ruta
- *@returns {boolean} result 
+ * funcion extrae todo los archivos con extension.md  de una ruta absoluta
+ *@param {string} footpath es una ruta absoluta
+ *@returns {array} [pathAbsolute1,pathAbsolute2,pathAbsolute3,pathAbsolute4....]
  */
-export function pathIsFile(footpath) {
-  const result = fs.statSync(footpath).isFile();
-  return result
+export function filtersPathsExtensionMd(footpath) {
+  if (fs.statSync(footpath).isFile() && path.extname(footpath)==='md') {
+  return [footpath]
+  }
+  else if (fs.statSync(footpath).isDirectory())
+ {
+    const arrayFile = fs.readdirSync(footpath).filter(e => e.includes('.md'))
+    return arrayFile.map((elemt)=>pathAbsolute(elemt))
+  }
 }
-
-/**
- * funcion que prueba si es un directorio o carpeta
- *@param {string} footpath una ruta
- *@returns {boolean} result  
- */
-export function pathIsDirectory(footpath) {
-  const result = fs.statSync(footpath).isDirectory();
-  return result
-}
-
-
-/**
- * funcion que lee el contenido de un directorio
- *@param {string} footpath una ruta
- *@returns {array} result  
- */
-export function readDirectorycontents(footpath) {
-  const result = fs.readdirSync(footpath)
-return result
-}
-
-/**
- * funcion que retorna la extension de una ruta
- *@param {string} footpath una ruta
- *@returns {string} result  
- */
-export function readFileExtension(footpath) {
-  const result = path.extname(footpath)
-return result
-}
-
-/**
- * funcion extrae todo los archivos con extension.md de un directorio
- *@param {array} arrayFile contenido de un directorio
- *@returns {array} es un arreglo de archivos con extension .md
- */
-export function filtersFileExtensionMd(arrayFile) {
- return arrayFile.filter(e => e.includes('.md'))
-}
-
-
 
 /**
  * funcion que retorna los link del contenido de un archivo .md
  *@param {string} footpath una ruta absoluta
- *@returns {array} linkFile [{href,text,path}]  
+ *@returns {array}[{href,text,path}]  
  */
 export function findLinksFileContent(footpath) {
   const linkFileMd=[]
@@ -95,12 +59,47 @@ export function findLinksFileContent(footpath) {
      });
   });
 
- return linkFileMd;
-  };
+  return linkFileMd;
+  
+};
+/**
+ * funcion que retorna los link del contenido de todos los archivo .md
+ *@param {string} footpath una ruta absoluta
+ *@returns {array}[{href,text,path}]  
+ */
+  
+export function allFindLinksContent(footpath) {
+  const allMdLinks = []
+  filtersFileExtensionMd(footpath).forEach((e) => {
+   console.log(e)
+  })
+ 
+  return allMdLinks
+};
+  
 
 
 
 
+/**
+ * funcion que retorna el estado de los link  contenido de un archivo .md
+ *@param {string} footpath una ruta absoluta
+ *@returns {array}  [{ href, text, file, status, ok }, ...]
+ */
+export function statusLinksFileContent(footpath) {
+  const arrayStatusLinks=findLinksFileContent(footpath).forEach((elem) => {
+    fetch(elem.href)
+      .then((res)=> {
+        
+      })
+      .catch(err => console.log(err))
+      //.finally(() => console.log('Cargando ...'))
+  })
+
+  }
+   
+
+statusLinksFileContent('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\JavaScript.md')
 
 
 

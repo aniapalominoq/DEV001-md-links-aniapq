@@ -1,11 +1,15 @@
+import { pathValidator } from "./functionsAll"
+
  export function mdLinks(path, option) {
    return new Promise((resolve, reject) => {
-       if (delay < 0) {
-      throw new Error('Alarm delay must not be negative');
+     if (pathValidator(path))
+    {
+     
     }
-    setTimeout(() => {
-      resolve(`Wake up, ${person}!`);
-    }, delay);
+    else
+    {
+       reject('Ruta no existe')
+    }
      
      
    })
@@ -25,3 +29,4 @@
 }
 
  */
+

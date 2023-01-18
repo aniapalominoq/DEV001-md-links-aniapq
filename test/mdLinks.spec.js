@@ -16,9 +16,9 @@ describe('mdLinks', () => {
    it('is a function', () => {
     expect(typeof mdLinks).toBe('function');
    });
-  
-
  
+
+
 });
 /** test  FUNCTION:pathValidator*/
 describe('pathValidator', () => {
