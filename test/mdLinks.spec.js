@@ -3,7 +3,8 @@ import {
   pathValidator,
   pathAbsolute,
   filtersPathsExtensionMd,
-  findLinksFileContent
+  findLinksFileContent,
+  allFindLinksContent
 } from "../src/functionsAll.js";
 import { mdLinks } from "../src/mdLinks.js";
 
@@ -57,9 +58,9 @@ describe('pathAbsolute', () => {
   });
   it("should return an array of paths of all .md files that a directory contains", () => {
     expect(filtersPathsExtensionMd('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof')).toEqual([
-  'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\ania-links.md',
-  'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\apuntes.md',
-  'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\JavaScript.md'
+  'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md',
+  'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\apuntes.md',
+  'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\JavaScript.md'
 ]);
   });
  }); 
@@ -71,6 +72,21 @@ describe('findLinksFileContent', () => {
   });
   it("should return an array [{ href, text, file }, ...]", () => {
     expect(findLinksFileContent('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md')).toEqual([
+  {
+    href: 'https://github.com/aniapalominoq',
+    text: 'my github',
+    path: 'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md'
+  }
+]) 
+  });
+ }); 
+ /** test  FUNCTION:allFindLinksContent*/
+describe('allFindLinksContent', () => {
+  it("is a function", () => {
+    expect(typeof allFindLinksContent).toBe("function");
+  });
+  it("should return an array [{ href, text, file }, ...]", () => {
+    expect(allFindLinksContent('proof/ania-links.md')).toEqual([
   {
     href: 'https://github.com/aniapalominoq',
     text: 'my github',
