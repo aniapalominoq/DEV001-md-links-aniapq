@@ -58,10 +58,11 @@ describe('pathAbsolute', () => {
   });
   it("should return an array of paths of all .md files that a directory contains", () => {
     expect(filtersPathsExtensionMd('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof')).toEqual([
-  'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md',
-  'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\apuntes.md',
-  'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\JavaScript.md'
-]);
+        "C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md",
+        "C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\apuntes.md",
+       "C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\carpeta\\recursividad.md",
+        "C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\JavaScript.md",
+      ]);
   });
  }); 
 
@@ -76,10 +77,24 @@ describe('findLinksFileContent', () => {
     href: 'https://github.com/aniapalominoq',
     text: 'my github',
     path: 'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md'
+  },
+  {
+    href: 'http://www.example.com/descargar-hola-mundo',
+    text: 'pagina error',
+    path: 'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md'
+  },
+  {
+    href: 'https://web.whatsapp.com/',
+    text: 'whatsapp',
+    path: 'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md'
   }
 ]) 
   });
- }); 
+ it("should return an array []", () => {
+    expect(findLinksFileContent('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\apuntes.md')).toEqual(['']) 
+  });
+}); 
+ 
  /** test  FUNCTION:allFindLinksContent*/
 describe('allFindLinksContent', () => {
   it("is a function", () => {
@@ -91,7 +106,18 @@ describe('allFindLinksContent', () => {
     href: 'https://github.com/aniapalominoq',
     text: 'my github',
     path: 'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md'
+  },
+  {
+    href: 'http://www.example.com/descargar-hola-mundo',
+    text: 'pagina error',
+    path: 'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md'
+  },
+  {
+    href: 'https://web.whatsapp.com/',
+    text: 'whatsapp',
+    path: 'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md'
   }
 ]) 
   });
- }); 
+}); 
+ 

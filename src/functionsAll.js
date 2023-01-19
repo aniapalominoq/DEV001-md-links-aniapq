@@ -25,22 +25,17 @@ return result
 }
 
 /**
- * funcion extrae todo los archivos con extension.md  de una ruta absoluta
+ * funcion RECURSIVA extrae todo los archivos con extension.md  de una RUTA
  *@param {string} footpath es una ruta absoluta o relativa
  *@returns {array} [pathAbsolute1,pathAbsolute2,pathAbsolute3,pathAbsolute4....]
  */
-export function filtersPathsExtensionMd(footpath) {
- const pathAbs=pathAbsolute(footpath)
-
-  if (fs.statSync(pathAbs).isFile() && path.extname(pathAbs)==='.md') {
-  return [pathAbs]
+export function filtersPathsExtensionMd (footpath) {
+   let allPaths = []
+  const pathAbs = pathAbsolute(footpath)
+    if (fs.statSync(pathAbs).isFile()) allPaths .push(pathAbs);
+    else fs.readdirSync(pathAbs).forEach(e => allPaths = allPaths.concat(filtersPathsExtensionMd(`${pathAbs}\\${e}`)))
+   return allPaths.filter(e => e.includes('.md'))
   }
-  else if (fs.statSync(pathAbs).isDirectory())
- {
-    const arrayFile = fs.readdirSync(pathAbs).filter(e => e.includes('.md'))
-    return arrayFile.map((elemt)=>`${pathAbs}\\${elemt}`)
-  }
-}
 
 /**
  * funcion que retorna los link del contenido de un archivo .md
@@ -62,15 +57,9 @@ export function findLinksFileContent(footpath) {
       });
     });
   } else {
-    linkFileMd.push({
-        href: " ",
-        text: " ",
-        path: footpath,
-      });
+    linkFileMd.push('')
   }
-
   return linkFileMd;
-  
 };
 /**
  * funcion que retorna los link del contenido de TODO los archivo .md
@@ -81,55 +70,36 @@ export function findLinksFileContent(footpath) {
 export function allFindLinksContent(footpath) {
   return filtersPathsExtensionMd(footpath).map((path) => findLinksFileContent(path)).flat()
 };
-  console.log('----------------CON RUTA RELATIVA Y ARCHIVO--------------------------------')
-
-console.log(allFindLinksContent('proof/ania-links.md'))
-console.log('----------------CON RUTA ABSOLUTA- Y ARCHIVO-------------------------------')
-console.log(allFindLinksContent('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md'))
- console.log('-------------------CON RUTA ABSOLUTA DIRECTORIO-----------------------------')
-console.log(allFindLinksContent('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof'))
-
- console.log('-----------------ON RUTA RELATIVA DIRECTORIO--------------------------------')
-console.log(allFindLinksContent('proof'))
 
 /**
  * funcion que retorna el estado de los link  contenido de un archivo .md
- *@param {string} footpath una ruta absoluta
+ *@param {string} footpath una ruta absoluta o relativas
  *@returns {array}  [{ href, text, file, status, ok }, ...]
  */
-/* export function statusLinksFileContent(footpath) {
-  const arrayStatusLinks=findLinksFileContent(footpath).forEach((elem) => {
+
+export function statusLinksFileContent(footpath) {
+   const statusArray = [];
+ allFindLinksContent(footpath).forEach((elem) => {
+    console.log(elem)
     fetch(elem.href)
-      .then((res)=> {
-        
+      .then((res) => {
+        elem.status = res.status
+        elem.ok = res.ok ? 'ok' : 'fail'
+        statusArray.push(elem)
+        console.log(elem)
+      
+        console.log( elem.href,res.ok,res.status)
       })
       .catch(err => console.log(err))
       //.finally(() => console.log('Cargando ...'))
-  })
+ })
 
-  }
-   
- */
-
-
+}
+  
+//console.log(statusLinksFileContent('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md')
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//console.log(findLinksFileContent('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md')
 
 
 
