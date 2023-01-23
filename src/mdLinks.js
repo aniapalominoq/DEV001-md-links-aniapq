@@ -1,10 +1,8 @@
 import {
   pathValidator,
-  pathAbsolute,
   filtersPathsExtensionMd,
   allFindLinksContent,
-  statusLinksFileContent,
-  findLinksFileContent
+  statusLinksFileContent
 } from "./functionsAll.js"
 
 
@@ -14,7 +12,7 @@ import {
        return reject(`Ruta:${path} ,no es valida o no existe`)
      }
      else {
-       if (!filtersPathsExtensionMd(footpath).length || !findLinksFileContent(pathAbsolute(footpath))) {
+       if (!filtersPathsExtensionMd(footpath).length ){
          return reject(`Ruta:${footpath} no es o no contiende archivo(os) Markdown`)
        }
        else {
@@ -23,10 +21,11 @@ import {
          }
          else {
            if (options === undefined || !options.validate) {
+             console.log('Recuerde que para validar los links, elegir la option {validate:true}')
              resolve(allFindLinksContent(footpath))
            }
            else {
-             resolve(statusLinksFileContent(footpath).then(res => console.log(res)))
+             resolve(console.log(statusLinksFileContent(footpath).then(res => console.log(res))))
            }
          }
        }
@@ -36,3 +35,4 @@ import {
    
 }
 
+console.log(mdLinks('proof',{validate:true}).then(res=>console.log(res)).catch(err=>console.log(err)))
