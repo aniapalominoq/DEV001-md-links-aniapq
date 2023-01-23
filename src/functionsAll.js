@@ -36,7 +36,8 @@ export function filtersPathsExtensionMd (footpath) {
     if (fs.statSync(pathAbs).isFile()) allPaths .push(pathAbs);
     else fs.readdirSync(pathAbs).forEach(e => allPaths = allPaths.concat(filtersPathsExtensionMd(`${pathAbs}\\${e}`)))
    return allPaths.filter(e => e.includes('.md'))
-  }
+}
+  
 
 /**
  * funcion que retorna los link del contenido de un archivo .md
@@ -58,7 +59,7 @@ export function findLinksFileContent(footpath) {
       });
     });
   } else {
-    linkFileMd.push({})
+    linkFileMd.push()
   }
   return linkFileMd;
 };
@@ -90,5 +91,4 @@ allFindLinksContent(footpath).forEach((elem) => {
 return Promise.all(proms)
 }
 
-//console.log(statusLinksFileContent ('C:/Users/USUARIO/laboratoria/proyect4/DEV001-md-links-aniapq/proof/javaScript.md').then((res) => {console.log(res)}))
-
+console.log(findLinksFileContent(pathAbsolute('proof/apuntes.md') ))
