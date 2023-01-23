@@ -1,6 +1,7 @@
 import { existsSync } from 'node:fs';
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
+
 //import markdownLinkExtractor from 'markdown-link-extractor';
 //import linkCheck  from 'link-check';
 
@@ -57,14 +58,14 @@ export function findLinksFileContent(footpath) {
       });
     });
   } else {
-    linkFileMd.push('')
+    linkFileMd.push({})
   }
   return linkFileMd;
 };
 /**
  * funcion que retorna los link del contenido de TODO los archivo .md
  *@param {string} footpath una ruta absoluta o relativa
- *@returns {array}[{href,text,path}]  
+ *@returns {array}[{href,text,path},....]
  */
   
 export function allFindLinksContent(footpath) {
@@ -72,139 +73,22 @@ export function allFindLinksContent(footpath) {
 };
 
 /**
- * funcion que retorna el estado de los link  contenido de un archivo .md
+ * funcion que retorna el estado de los link  contenido de todos los archivo .md
  *@param {string} footpath una ruta absoluta o relativas
- *@returns {array}  [{ href, text, file, status, ok }, ...]
+ *@returns {array}  [{ href, text, file, status, ok }, ...] esto es una promesa
  */
 
 export function statusLinksFileContent(footpath) {
-   const statusArray = [];
- allFindLinksContent(footpath).forEach((elem) => {
-    console.log(elem)
-    fetch(elem.href)
-      .then((res) => {
-        elem.status = res.status
-        elem.ok = res.ok ? 'ok' : 'fail'
-        statusArray.push(elem)
-        console.log(elem)
-      
-        console.log( elem.href,res.ok,res.status)
-      })
-      .catch(err => console.log(err))
-      //.finally(() => console.log('Cargando ...'))
- })
-
+  const proms=[]
+allFindLinksContent(footpath).forEach((elem) => {
+   proms.push(fetch(elem.href).then((res) => { 
+      return Object.assign(elem, { status: res.status, ok: res.ok ? 'ok' : 'fail' })
+      }))
+    //.catch((error) => console.log( new Error('NO CARGO.',error)))
+    //.finally(() => console.log('esto se carga si o si...'))
+})
+return Promise.all(proms)
 }
-  
-//console.log(statusLinksFileContent('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md')
 
-
-//console.log(findLinksFileContent('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//console.log(statusLinksFileContent ('C:/Users/USUARIO/laboratoria/proyect4/DEV001-md-links-aniapq/proof/javaScript.md').then((res) => {console.log(res)}))
 
