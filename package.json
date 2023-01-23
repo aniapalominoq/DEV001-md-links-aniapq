@@ -2,7 +2,7 @@
   "name": "maskay-links-md",
   "version": "1.0.0",
   "bin": {
-    "maskay-links-md": "src/cli.js"
+    "maskay-links-md": "./src/cli.js"
   },
   "engines": {
     "node": ">=16.x"
