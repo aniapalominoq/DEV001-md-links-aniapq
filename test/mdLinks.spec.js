@@ -73,14 +73,24 @@ describe('findLinksFileContent', () => {
   });
   it("should return an array [{ href, text, file }, ...]", () => {
     expect(findLinksFileContent('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md')).toEqual([
-  {
+   {
     href: 'https://github.com/aniapalominoq',
     text: 'my github',
     path: 'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md'
   },
   {
     href: 'http://www.example.com/descargar-hola-mundo',
-    text: 'pagina error',
+    text: 'pagina error1',
+    path: 'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md'
+  },
+  {
+    href: 'http://www.example.com/descargar-hola-mundo',
+    text: 'pagina error2',
+    path: 'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md'
+  },
+  {
+    href: 'https://web.whatsapp.com/',
+    text: 'whatsapp',
     path: 'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md'
   },
   {
@@ -91,7 +101,7 @@ describe('findLinksFileContent', () => {
 ]) 
   });
  it("should return an array []", () => {
-    expect(findLinksFileContent('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\apuntes.md')).toEqual(['']) 
+    expect(findLinksFileContent('C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\apuntes.md')).toEqual([]) 
   });
 }); 
  
@@ -109,7 +119,17 @@ describe('allFindLinksContent', () => {
   },
   {
     href: 'http://www.example.com/descargar-hola-mundo',
-    text: 'pagina error',
+    text: 'pagina error1',
+    path: 'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md'
+  },
+  {
+    href: 'http://www.example.com/descargar-hola-mundo',
+    text: 'pagina error2',
+    path: 'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md'
+  },
+  {
+    href: 'https://web.whatsapp.com/',
+    text: 'whatsapp',
     path: 'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md'
   },
   {
@@ -120,4 +140,3 @@ describe('allFindLinksContent', () => {
 ]) 
   });
 }); 
- 
