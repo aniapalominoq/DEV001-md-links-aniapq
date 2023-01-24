@@ -91,4 +91,43 @@ allFindLinksContent(footpath).forEach((elem) => {
 return Promise.all(proms)
 }
 
-console.log(findLinksFileContent(pathAbsolute('proof/apuntes.md') ))
+//console.log(findLinksFileContent(pathAbsolute('proof/apuntes.md') ))
+/**
+ * funcion que retorna el TOTAL de  link  contenido de todos los archivo .md
+ *@param {string} footpath una ruta absoluta o relativas
+ *@returns {Number} total de links
+ */
+
+export function fullLinks(footpath) {
+return allFindLinksContent(footpath).length
+}
+
+/**
+ * funcion que retorna el TOTAL de  link  unicos que contenido de todos los archivo .md
+ *@param {string} footpath una ruta absoluta o relativas
+ *@returns {Number} total de links unicos
+ */
+export function uniqueLinks(footpath) {
+
+  const[...arrayLinksUnique] = new Set(allFindLinksContent(footpath).map(el => el.href))
+return arrayLinksUnique.length
+}
+
+/**
+ * funcion que retorna el TOTAL de  link  rotos que contenido de todos los archivo .md
+ *@param {string} footpath una ruta absoluta o relativas
+ *@returns {Number} total de links rotos
+ */
+export function brokenLinks(footpath) {
+
+  const broken=statusLinksFileContent(footpath).then((res) => {
+    res.filter(el => el.ok==='fail')
+ })
+return broken.length
+}
+
+/* console.log(fullLinks('proof'))
+console.log(uniqueLinks('proof'))
+console.log(brokenLinks('proof')) */
+
+console.log(allFindLinksContent('proof/ania-links.md'))
