@@ -130,4 +130,4 @@ return broken.length
 console.log(uniqueLinks('proof'))
 console.log(brokenLinks('proof')) */
 
-console.log(allFindLinksContent('proof/ania-links.md'))
+//console.log(allFindLinksContent('proof/ania-links.md'))
