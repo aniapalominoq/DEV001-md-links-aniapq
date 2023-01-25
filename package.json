@@ -48,6 +48,7 @@
   },
   "homepage": "https://github.com/aniapalominoq/DEV001-md-links-aniapq#readme",
   "dependencies": {
-    "chalk": "^5.2.0"
+    "colors": "^1.4.0",
+    "inquirer": "^9.1.4"
   }
 }

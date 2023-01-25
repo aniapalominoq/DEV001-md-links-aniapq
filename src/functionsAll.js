@@ -91,43 +91,41 @@ allFindLinksContent(footpath).forEach((elem) => {
 return Promise.all(proms)
 }
 
-//console.log(findLinksFileContent(pathAbsolute('proof/apuntes.md') ))
 /**
- * funcion que retorna el TOTAL de  link  contenido de todos los archivo .md
- *@param {string} footpath una ruta absoluta o relativas
+ * funcion que retorna el TOTAL de  link 
+ *@param {array} arrayPath [{href:https://example.com},]
  *@returns {Number} total de links
  */
 
-export function fullLinks(footpath) {
-return allFindLinksContent(footpath).length
+export function fullLinks(arrayPath) {
+return arrayPath.map(el => el.href).length
 }
 
 /**
- * funcion que retorna el TOTAL de  link  unicos que contenido de todos los archivo .md
- *@param {string} footpath una ruta absoluta o relativas
+ * funcion que retorna el TOTAL de  link  unicos 
+ *@param {array} arrayPath [{href:https://example.com},]
  *@returns {Number} total de links unicos
  */
-export function uniqueLinks(footpath) {
-
-  const[...arrayLinksUnique] = new Set(allFindLinksContent(footpath).map(el => el.href))
-return arrayLinksUnique.length
+export function uniqueLinks(arrayPath) {
+  const arrayLinksUnique = new Set(arrayPath.map(el => el.href))
+return arrayLinksUnique.size
 }
 
 /**
- * funcion que retorna el TOTAL de  link  rotos que contenido de todos los archivo .md
- *@param {string} footpath una ruta absoluta o relativas
+ * funcion que retorna el TOTAL de  link  rotos 
+*@param {array} arrayPath [{href:https://example.com},]
  *@returns {Number} total de links rotos
  */
-export function brokenLinks(footpath) {
-
-  const broken=statusLinksFileContent(footpath).then((res) => {
-    res.filter(el => el.ok==='fail')
- })
-return broken.length
+export function brokenLinks(arrayPath) {
+ const broken=arrayPath.filter(el => el.ok==='fail')
+return broken.length? broken.length:0
 }
 
-/* console.log(fullLinks('proof'))
-console.log(uniqueLinks('proof'))
-console.log(brokenLinks('proof')) */
 
-//console.log(allFindLinksContent('proof/ania-links.md'))
+//console.log(uniqueLinks([{href: 'https://github.com/ani'},{href: 'http://www.example.com'},{href: 'http://www.example.com'},{href: 'http://www.example.com'},{href: 'http://www.example.com'}]))
+//console.log(brokenLinks([{ok:'ok'},{ok:'ok' },{ok:'fail'},{ok:'ok'},{ok:'ok'}]))  
+
+
+
+
+//console.log(statusLinksFileContent('proof/ania-links.md').then(res=>{console.log(res)}))

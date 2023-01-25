@@ -25,7 +25,7 @@ import {
              resolve(allFindLinksContent(footpath))
            }
            else {
-             resolve(console.log(statusLinksFileContent(footpath).then(res => console.log(res))))
+             resolve(statusLinksFileContent(footpath).then(res => console.log(res)))
            }
          }
        }
@@ -34,5 +34,4 @@ import {
      })
    
 }
-
-console.log(mdLinks('proof',{validate:true}).then(res=>console.log(res)).catch(err=>console.log(err)))
+console.log(mdLinks('proof/javaScript.md',{validate:true}).then(res=>console.log(res)).catch(err=>console.log(err)))
