@@ -80,17 +80,32 @@ export function allFindLinksContent(footpath) {
  */
 
 export function statusLinksFileContent(footpath) {
-  const proms=[]
-allFindLinksContent(footpath).forEach((elem) => {
-   proms.push(fetch(elem.href).then((res) => { 
-      return Object.assign(elem, { status: res.status, ok: res.ok ? 'ok' : 'fail' })
-      }))
+  
+  const proms = allFindLinksContent(footpath).map((elem) => {
+    fetch(elem.href)
+      .then((response) => {
+        if (response.status >= 200 && response.status < 400) return { status: response.status, ok: 'ok' }
+        else if (response.status >= 400 && response.status < 500) return { status: response.status, ok: 'fail' }
+      })
+      .catch(() => { return { status: `Does not answer`.red, ok: 'fail' } })
     //.catch((error) => console.log( new Error('NO CARGO.',error)))
     //.finally(() => console.log('esto se carga si o si...'))
-})
-return Promise.all(proms)
+  } )
+   return Promise.all(proms).then((e)=>{console.log(e)})
 }
+/* console.log('esto es fetch')
+//http://www.example.com/descargar-hola-mundo  https://github.com/aniapalominoq
 
+console.log(fetch('http://www.example.com/descargar-hola-mundo')
+  .then((response) => response)
+  .then((response) => {if(response.status >= 200 && response.status < 400) return { status: response.status, ok: 'ok' }
+          else if(response.status >= 400 &&response.status < 500) return { status: response.status, ok:'fail' }
+  })
+  .catch(() => { return { status: `Does not answer`.red, ok: 'fail' } }))
+         */
+
+
+ 
 /**
  * funcion que retorna el TOTAL de  link 
  *@param {array} arrayPath [{href:https://example.com},]
@@ -98,7 +113,7 @@ return Promise.all(proms)
  */
 
 export function fullLinks(arrayPath) {
-return arrayPath.map(el => el.href).length
+return arrayPath.map(el => el.href)?arrayPath.map(el => el.href).length:0
 }
 
 /**
@@ -127,5 +142,4 @@ return broken.length? broken.length:0
 
 
 
-
-//console.log(statusLinksFileContent('proof/ania-links.md').then(res=>{console.log(res)}))
+console.log(statusLinksFileContent('proof/ania-links.md'))

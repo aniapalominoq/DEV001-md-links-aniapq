@@ -4,7 +4,11 @@ import {
   pathAbsolute,
   filtersPathsExtensionMd,
   findLinksFileContent,
-  allFindLinksContent
+  allFindLinksContent,
+  fullLinks,
+  uniqueLinks,
+  brokenLinks
+   
 } from "../src/functionsAll.js";
 import { mdLinks } from "../src/mdLinks.js";
 
@@ -140,3 +144,36 @@ describe('allFindLinksContent', () => {
 ]) 
   });
 }); 
+ /** test  FUNCTION:fullLinks*/
+describe('fullLinks', () => {
+     it("is a function", () => {
+    expect(typeof fullLinks).toBe("function");
+     });
+   it("should return total links", () => {
+    expect(fullLinks([{href: 'https://github.com/ani'},{href: 'http://www.example.com'},{href: 'http://www.example.com'},{href: 'http://www.example.com'},{href: 'http://www.example.com'}])).toBe(5);
+   });
+   it("should return 0 links ", () => {
+    expect(fullLinks([])).toBe(0);
+     });
+  
+})
+/** test  FUNCTION: uniqueLinks*/
+describe('uniqueLinks', () => {
+  it("is a function", () => {
+    expect(typeof uniqueLinks).toBe("function");
+  })
+  it('should return total links unique', () => {
+    expect(uniqueLinks([{ href: 'https://github.com/ani' }, { href: 'http://www.example.com' }, { href: 'http://www.example.com' }, { href: 'http://www.example.com' }, { href: 'http://www.example.com' }])).toBe(2);
+  })
+})
+
+/** test  FUNCTION: brokenLinks*/
+
+describe('brokenLinks', () => {
+  it("is a function", () => {
+    expect(typeof brokenLinks).toBe("function");
+  })
+  it('should return total broken links ', () => {
+    expect(brokenLinks([{ok:'ok'},{ok:'fail' },{ok:'fail'},{ok:'fail'},{ok:'ok'}])).toBe(3);
+  })
+})

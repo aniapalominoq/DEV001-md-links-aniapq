@@ -27,7 +27,7 @@ const mainOptions = async () => {
          mdLinks(ruta,{validate:true})
            .then(res => { 
              console.log('Total',fullLinks(res))
-             console.log('Unique',unique(res))
+             console.log('Unique',uniqueLinks(res))
             })
           .catch(error=>console.log(error))
         
@@ -38,8 +38,8 @@ const mainOptions = async () => {
        mdLinks(ruta,{validate:true})
          .then(res => {
            console.log('Total  :',fullLinks(res))
-           console.log('Unique :', unique(res))
-           console.log('Broken :',broken(res))
+           console.log('Unique :',uniqueLinks(res))
+           console.log('Broken :',brokenLinks(res))
          })
           .catch(error=>console.log(error))
        

@@ -12,7 +12,10 @@ let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
 let year = date_ob.getFullYear();
 
 
-const questions = [{
+
+
+export const menu = async () => {
+  const questions = [{
   type: 'list',
   name: 'options',
   message: 'Que quieres hacer, con la ruta ingresada?',
@@ -41,8 +44,6 @@ const questions = [{
     ]
 }] 
 
-
-export const menu = async () => {
   const { options} = await inquirer.prompt(questions)
   return options
 }
@@ -64,12 +65,11 @@ export const readInput = async() => {
   console.log(`${'∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞- '}`.yellow)
   console.log(`             ${'maskay-linsk-md'.underline} ${'Library'.brightBlue}`)
   console.log(`${'∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞- '}`.yellow)
-  console.log('                                                      ');
+    console.log('\n');
   console.log(`                            today : ${date}-${month}-${year}`.yellow);
+  console.log('\n');
 
-  console.log('------------------------------------------------------');
 
-  
  const inputs = [
     {
      type: 'input',

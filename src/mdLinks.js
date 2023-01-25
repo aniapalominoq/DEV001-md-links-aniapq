@@ -34,4 +34,4 @@ import {
      })
    
 }
-console.log(mdLinks('proof/javaScript.md',{validate:true}).then(res=>console.log(res)).catch(err=>console.log(err)))
+//console.log(mdLinks('proof',{validate:true}).then(res=>console.log(res)).catch(err=>console.log(err)))
