@@ -73,27 +73,6 @@ export function allFindLinksContent(footpath) {
   return filtersPathsExtensionMd(footpath).map((path) => findLinksFileContent(path)).flat()
 };
 
-/**
- * funcion que retorna el estado de los link  contenido de todos los archivo .md
- *@param {string} footpath una ruta absoluta o relativas
- *@returns {array}  [{ href, text, file, status, ok }, ...] esto es una promesa
- */
-
-export function  statusLinksFileContent(footpath) {
-  
-  const proms = allFindLinksContent(footpath).map((elem) => {
-    fetch(elem.href)
-      .then((response) => {
-        if (response.status >= 200 && response.status < 400) return { status: response.status, ok: 'ok' }
-        else if (response.status >= 400 && response.status < 500) return { status: response.status, ok: 'fail' }
-      })
-      .catch(() => { return { status: `Does not answer`.red, ok: 'fail' } })
-    //.catch((error) => console.log( new Error('NO CARGO.',error)))
-    //.finally(() => console.log('esto se carga si o si...'))
-  } )
-   return Promise.all(proms)
-}
-
  
 /**
  * funcion que retorna el TOTAL de  link 
@@ -125,4 +104,32 @@ export function brokenLinks(arrayPath) {
 return broken.length? broken.length:0
 }
 
+/**
+ * funcion que retorna el estado de los link  contenido de todos los archivo .md
+ *@param {string} footpath una ruta absoluta o relativas
+ *@returns {array}  [{ href, text, file, status, ok }, ...] esto es una promesa
+ */
+const statusLinksFileContent = (footpath)=> 
+  Promise.all(allFindLinksContent(footpath).map((elem) => {
+   
+   fetch(elem.href)
+     .then((response) => {
+       
+       //if (response.status >= 200 && response.status < 400)
+      
+       return { status: response.status, ok: 'ok' }
+        //else if (response.status >= 400 && response.status < 500) return { status: response.status, ok: 'fail' }
+      })
+     .catch(() => {
+       return { status: `Does not answer`, ok: 'fail' }
+     })
+    //.catch((error) => console.log( new Error('NO CARGO.',error)))
+    //.finally(() => console.log('esto se carga si o si...'))
+
+  })).then(response => { return response })
+
+
 //console.log(statusLinksFileContent('proof/ania-links.md'))
+//fetch('https://github.com/aniapalominoq').then(res => console.log(res.status))
+
+ statusLinksFileContent('proof/ania-links.md').then(res => console.log(res))
