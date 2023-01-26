@@ -79,7 +79,7 @@ export function allFindLinksContent(footpath) {
  *@returns {array}  [{ href, text, file, status, ok }, ...] esto es una promesa
  */
 
-export function statusLinksFileContent(footpath) {
+export function  statusLinksFileContent(footpath) {
   
   const proms = allFindLinksContent(footpath).map((elem) => {
     fetch(elem.href)
@@ -91,19 +91,8 @@ export function statusLinksFileContent(footpath) {
     //.catch((error) => console.log( new Error('NO CARGO.',error)))
     //.finally(() => console.log('esto se carga si o si...'))
   } )
-   return Promise.all(proms).then((e)=>{console.log(e)})
+   return Promise.all(proms)
 }
-/* console.log('esto es fetch')
-//http://www.example.com/descargar-hola-mundo  https://github.com/aniapalominoq
-
-console.log(fetch('http://www.example.com/descargar-hola-mundo')
-  .then((response) => response)
-  .then((response) => {if(response.status >= 200 && response.status < 400) return { status: response.status, ok: 'ok' }
-          else if(response.status >= 400 &&response.status < 500) return { status: response.status, ok:'fail' }
-  })
-  .catch(() => { return { status: `Does not answer`.red, ok: 'fail' } }))
-         */
-
 
  
 /**
@@ -136,10 +125,4 @@ export function brokenLinks(arrayPath) {
 return broken.length? broken.length:0
 }
 
-
-//console.log(uniqueLinks([{href: 'https://github.com/ani'},{href: 'http://www.example.com'},{href: 'http://www.example.com'},{href: 'http://www.example.com'},{href: 'http://www.example.com'}]))
-//console.log(brokenLinks([{ok:'ok'},{ok:'ok' },{ok:'fail'},{ok:'ok'},{ok:'ok'}]))  
-
-
-
-console.log(statusLinksFileContent('proof/ania-links.md'))
+//console.log(statusLinksFileContent('proof/ania-links.md'))
