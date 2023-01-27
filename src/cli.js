@@ -1,10 +1,8 @@
-import inquirer from 'inquirer'
+
 import colors from 'colors'
 import { contentHelp, menu, pause, readInput } from './viewUser.js'
 import { mdLinks } from './mdLinks.js'
 import { brokenLinks, fullLinks, uniqueLinks } from './functionsAll.js'
-
-
 
 
 const mainOptions = async () => {
@@ -24,8 +22,9 @@ const mainOptions = async () => {
       case '2':
         console.clear()
         console.log('Option:--stats')
-         mdLinks(ruta,{validate:true})
+         mdLinks(ruta,{validate:false})
            .then(res => { 
+             console.log('\n');
              console.log('Total',fullLinks(res))
              console.log('Unique',uniqueLinks(res))
             })
@@ -37,6 +36,7 @@ const mainOptions = async () => {
         console.log('Option:--stats --validate')
        mdLinks(ruta,{validate:true})
          .then(res => {
+           console.log('\n');
            console.log('Total  :',fullLinks(res))
            console.log('Unique :',uniqueLinks(res))
            console.log('Broken :',brokenLinks(res))

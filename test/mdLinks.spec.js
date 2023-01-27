@@ -7,8 +7,8 @@ import {
   allFindLinksContent,
   fullLinks,
   uniqueLinks,
-  brokenLinks
-   
+  brokenLinks,
+   statusLinksFileContent
 } from "../src/functionsAll.js";
 import { mdLinks } from "../src/mdLinks.js";
 
@@ -176,4 +176,13 @@ describe('brokenLinks', () => {
   it('should return total broken links ', () => {
     expect(brokenLinks([{ok:'ok'},{ok:'fail' },{ok:'fail'},{ok:'fail'},{ok:'ok'}])).toBe(3);
   })
+})
+
+/** test  FUNCTION: statusLinksFileContent*/
+
+describe('statusLinksFileContent', () => {
+  it("is a function", () => {
+    expect(typeof statusLinksFileContent).toBe("function");
+  })
+
 })

@@ -2,6 +2,7 @@ import { existsSync } from 'node:fs';
 import fs from 'node:fs';
 import path from 'node:path';
 
+
 //import markdownLinkExtractor from 'markdown-link-extractor';
 //import linkCheck  from 'link-check';
 
@@ -81,7 +82,8 @@ export function allFindLinksContent(footpath) {
  */
 
 export function fullLinks(arrayPath) {
-return arrayPath.map(el => el.href)?arrayPath.map(el => el.href).length:0
+  const arrayFullLinks = arrayPath.map(el => el.href)
+return arrayFullLinks ? arrayFullLinks.length:0
 }
 
 /**
@@ -107,29 +109,85 @@ return broken.length? broken.length:0
 /**
  * funcion que retorna el estado de los link  contenido de todos los archivo .md
  *@param {string} footpath una ruta absoluta o relativas
- *@returns {array}  [{ href, text, file, status, ok }, ...] esto es una promesa
+ *@returns {array}  [{ href, text, file, status, ok }, ...] un array de promesas
  */
-const statusLinksFileContent = (footpath)=> 
-  Promise.all(allFindLinksContent(footpath).map((elem) => {
-   
-   fetch(elem.href)
-     .then((response) => {
-       
-       //if (response.status >= 200 && response.status < 400)
-      
-       return { status: response.status, ok: 'ok' }
-        //else if (response.status >= 400 && response.status < 500) return { status: response.status, ok: 'fail' }
+export function statusLinksFileContent(footpath) {
+  const arrayFetch = allFindLinksContent(footpath).map(elem =>
+    fetch(elem.href)
+      .then((response) => {
+        if (response.status >= 200 && response.status < 400) return { ...elem, status: response.status, ok: 'ok' }
+        else if (response.status >= 400 && response.status < 500) return { ...elem, status: response.status, ok: 'fail' }
       })
-     .catch(() => {
-       return { status: `Does not answer`, ok: 'fail' }
-     })
-    //.catch((error) => console.log( new Error('NO CARGO.',error)))
+      .catch(() => {
+        return {...elem, status: `Does not answer`, ok: 'fail' }
+      })
     //.finally(() => console.log('esto se carga si o si...'))
+  ) 
+ return arrayFetch
+   
+}
 
-  })).then(response => { return response })
-
-
-//console.log(statusLinksFileContent('proof/ania-links.md'))
 //fetch('https://github.com/aniapalominoq').then(res => console.log(res.status))
 
- statusLinksFileContent('proof/ania-links.md').then(res => console.log(res))
+//Promise.all(statusLinksFileContent('proof/ania-links.md')).then(res => console.log(res))
+/*
+ USARLO PARA EXPERIENCIA  LA PRIMERA PARTE DEL CV
+
+ uniformizar 
+ortografia
+ingenieria informatica
+formatos 
+alinaciones
+ colores sobriosa
+ proyectos dondo de los hice
+
+ certificion excel avanzado en skill
+ seccion extracurruicleert
+ voluntariados para hobbis y voluntariados
+
+bachi
+
+abao
+datoso personales direcion  telefono.linkeding
+
+
+experiencia
+petramas.sac. breve descricipn de empresa
+   
+
+educacion
+extracurricular
+OTROS
+LISTAS LOS SKILLS
+TI: TELLO SAGO
+PROGRAMAS : LENJUADES
+HTML
+DISEÑO
+ HABILIDADES Y IDEOMAS
+
+
+
+--------------------------
+  deque se trata el proyecto
+tecnologias usadas,
+  bulet
+   laboratoria educacion
+  
+---------------
+ DIFERENCIA ALGUN VALOR
+ EXPERIENCIA : EN DIFERENCIA GESTION DE EQUIPO
+MAXIMO CUATRO
+PONER MIS FUNCIONES
+VIÑETAS:
+LOGROS:
+EN UNA SOLA PERSONA
+
+ FOTO SIN FONDO
+ SONRIENTE
+  DE HOMBRO  DES CRIPCION CRIPCIONES 
+   MAYUSCULAS 
+    TILDES
+    
+Ejecutivo Comercial Senior, experto en Gestión B2B para los sectores Banca y Seguros.  Ingeniero Industrial por la Universidad de Lima, con MBA por la Universidad del Pacífico.  Sólida experiencia en startups, gestión de estados financieros ligados a la venta y todo el proceso productivo de cara a la rentabilidad con indicadores de ROI y Ebitda.  Sostenida experiencia en gestión gerencial satisfactoria relativa a las ventas y marketing para el segmento corporativo (B2B).  Altas Competencias en Pensamiento Estratégico y Analítico, Empatía y Liderazgo. REFERENCIAL.
+work  */
+ 

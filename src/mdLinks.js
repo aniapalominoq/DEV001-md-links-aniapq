@@ -22,10 +22,11 @@ import {
          else {
            if (options === undefined || !options.validate) {
              console.log('Recuerde que para validar los links, elegir la option {validate:true}')
-             resolve(allFindLinksContent(footpath))
+             return resolve(allFindLinksContent(footpath))
            }
            else {
-             resolve(statusLinksFileContent(footpath).then(res => console.log(res)))
+             resolve(Promise.all(statusLinksFileContent(footpath)).then(res => { return res }))
+             
            }
          }
        }
@@ -34,4 +35,4 @@ import {
      })
    
 }
-//console.log(mdLinks('proof',{validate:true}).then(res=>console.log(res)).catch(err=>console.log(err)))
+//mdLinks('proof',{validate:true}).then(res=>console.log(res)).catch(err=>console.log(err))
