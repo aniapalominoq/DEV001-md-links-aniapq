@@ -22,24 +22,24 @@ export const menu = async () => {
   choices: [
     {
       value: '1',
-      name: `${"1.".green} --validate`
+      name: `${'1.'.green} --validate`
     },
     {
       value: '2',
-      name: `${"2.".green} --stats`
+      name: `${'2.'.green} --stats`
     },
     {
       value: '3',
-      name: `${"3.".green} --stats --validate`
+      name: `${'3.'.green} --stats --validate`
 
       },
        {
         value: '4',
-        name:`${"4.".green}--help`
+        name:`${'4.'.green}--help`
       },
         {
         value: '0',
-        name: `${"0.".red}--exit`
+        name: `${'0.'.red}--exit`
       }
     ]
 }] 
