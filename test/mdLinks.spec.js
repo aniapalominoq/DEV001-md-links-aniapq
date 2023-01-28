@@ -267,6 +267,9 @@ describe('brokenLinks', () => {
   it('should return total broken links ', () => {
     expect(brokenLinks([{ok:'ok'},{ok:'fail' },{ok:'fail'},{ok:'fail'},{ok:'ok'}])).toBe(3);
   })
+   it('should return 0  ', () => {
+    expect(brokenLinks([{ok:'ok'},{ok:'ok' },{ok:'ok'},{ok:'ok'},{ok:'ok'}])).toBe(0);
+  })
 })
 
 /** test  FUNCTION: statusLinksFileContent*/
@@ -275,5 +278,11 @@ describe('statusLinksFileContent', () => {
   it("is a function", () => {
     expect(typeof statusLinksFileContent).toBe("function");
   })
-
+  
+  it("should return an array of objects", () => {
+    return Promise.all(statusLinksFileContent('proof/ania-links.md')).then((res) => {
+    expect(res).toStrictEqual(pruebaTrue);
+  })
+    
+  })
 })

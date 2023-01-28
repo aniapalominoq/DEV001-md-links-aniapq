@@ -1,12 +1,8 @@
 import { existsSync } from 'node:fs';
 import fs from 'node:fs';
 import path from 'node:path';
-
-
 //import markdownLinkExtractor from 'markdown-link-extractor';
 //import linkCheck  from 'link-check';
-
-
 /**
  * funcion que valida si existe la ruta
  * @param {string} footpath una ruta 
@@ -85,7 +81,6 @@ export function fullLinks(arrayPath) {
   const arrayFullLinks = arrayPath.map(el => el.href)
 return arrayFullLinks ? arrayFullLinks.length:0
 }
-
 /**
  * funcion que retorna el TOTAL de  link  unicos 
  *@param {array} arrayPath [{href:https://example.com},]
@@ -118,9 +113,9 @@ export function statusLinksFileContent(footpath) {
         if (response.status >= 200 && response.status < 400) return { ...elem, status: response.status, ok: 'ok' }
         else if (response.status >= 400 && response.status < 500) return { ...elem, status: response.status, ok: 'fail' }
       })
-      .catch(() => {
+     /*  .catch(() => {
         return {...elem, status: `Does not answer`, ok: 'fail' }
-      })
+      }) */
     //.finally(() => console.log('esto se carga si o si...'))
   ) 
  return arrayFetch
