@@ -11,6 +11,71 @@ import {
    statusLinksFileContent
 } from "../src/functionsAll.js";
 import { mdLinks } from "../src/mdLinks.js";
+const pruebaTrue=[
+  {
+    href: 'https://github.com/aniapalominoq',
+    text: 'my github',
+    path: 'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md',
+    status: 200,
+    ok: 'ok'
+  },
+  {
+    href: 'http://www.example.com/descargar-hola-mundo',
+    text: 'pagina error1',
+    path: 'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md',
+    status: 404,
+    ok: 'fail'
+  },
+  {
+    href: 'http://www.example.com/descargar-hola-mundo',
+    text: 'pagina error2',
+    path: 'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md',
+    status: 404,
+    ok: 'fail'
+  },
+  {
+    href: 'https://web.whatsapp.com/',
+    text: 'whatsapp',
+    path: 'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md',
+    status: 400,
+    ok: 'fail'
+  },
+  {
+    href: 'https://web.whatsapp.com/',
+    text: 'whatsapp',
+    path: 'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md',
+    status: 400,
+    ok: 'fail'
+  }
+]
+const pruebaFalse=[
+  {
+    href: 'https://github.com/aniapalominoq',
+    text: 'my github',
+    path: 'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md'
+  },
+  {
+    href: 'http://www.example.com/descargar-hola-mundo',
+    text: 'pagina error1',
+    path: 'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md'
+  },
+  {
+    href: 'http://www.example.com/descargar-hola-mundo',
+    text: 'pagina error2',
+    path: 'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md'
+  },
+  {
+    href: 'https://web.whatsapp.com/',
+    text: 'whatsapp',
+    path: 'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md'
+  },
+  {
+    href: 'https://web.whatsapp.com/',
+    text: 'whatsapp',
+    path: 'C:\\Users\\USUARIO\\laboratoria\\proyect4\\DEV001-md-links-aniapq\\proof\\ania-links.md'
+  }
+]
+
 
 describe('mdLinks', () => {
 
@@ -18,9 +83,35 @@ describe('mdLinks', () => {
     expect(typeof mdLinks).toBe('function');
    });
  
-
+/*   it('should return a promise', () => {
+    return mdLinks('proof/ania-links.md',{validate:true})
+      .then((res) => {
+      expect(mdLinks(res)).toBe(typeof Promise)
+      })
+      .catch(() => { })
+  });
+   */
+  it('mdLinks should return a basic information ', () => {
+     expect(mdLinks('proof/ania-links.md', { validate: false })).resolves.toStrictEqual(pruebaFalse);
+   
+  });
+  it('mdLinks should return validated links ', () => {
+    expect(mdLinks('proof/ania-links.md', {validate: true})).resolves.toStrictEqual(pruebaTrue);
+  });
+  it('should return error with an incorrect path', () => {
+    expect(mdLinks('notPath', { validate: true })).rejects.toStrictEqual("Ruta:No es valida o no existe");
+  });
+   it('should return an error with an empty file', () => {
+    expect(mdLinks('proof/datos.text', { validate: true })).rejects.toStrictEqual("Ruta:No es o no contiende archivo(os) Markdown");
+  });
+   it('should return an error with empty file', () => {
+    expect(mdLinks('proof/apuntes.md', { validate: true })).rejects.toStrictEqual("Ruta:nose encontro ningun link.");
+  });
+   
 
 });
+
+
 /** test  FUNCTION:pathValidator*/
 describe('pathValidator', () => {
 
@@ -28,7 +119,7 @@ describe('pathValidator', () => {
     expect(typeof pathValidator).toBe("function");
   });
   it("should return TRUE", () => {
-    expect(pathValidator('./proof/datos.txt')).toBeTruthy();
+    expect(pathValidator('./proof/datos.text')).toBeTruthy();
   });
    it("should return FALSE", () => {
     expect(pathValidator('')).toBeFalsy();
@@ -176,6 +267,9 @@ describe('brokenLinks', () => {
   it('should return total broken links ', () => {
     expect(brokenLinks([{ok:'ok'},{ok:'fail' },{ok:'fail'},{ok:'fail'},{ok:'ok'}])).toBe(3);
   })
+   it('should return 0  ', () => {
+    expect(brokenLinks([{ok:'ok'},{ok:'ok' },{ok:'ok'},{ok:'ok'},{ok:'ok'}])).toBe(0);
+  })
 })
 
 /** test  FUNCTION: statusLinksFileContent*/
@@ -184,5 +278,11 @@ describe('statusLinksFileContent', () => {
   it("is a function", () => {
     expect(typeof statusLinksFileContent).toBe("function");
   })
-
+  
+  it("should return an array of objects", () => {
+    return Promise.all(statusLinksFileContent('proof/ania-links.md')).then((res) => {
+    expect(res).toStrictEqual(pruebaTrue);
+  })
+    
+  })
 })

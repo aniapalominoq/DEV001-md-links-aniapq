@@ -4,20 +4,18 @@ import {
   allFindLinksContent,
   statusLinksFileContent
 } from "./functionsAll.js"
-
-
  export function mdLinks(footpath, options={}) {
    return new Promise((resolve, reject) => {
-     if (!pathValidator(footpath)) {
-       return reject(`Ruta:${path} ,no es valida o no existe`)
+     if (pathValidator(footpath)===false) {
+       return reject('Ruta:No es valida o no existe')
      }
      else {
-       if (!filtersPathsExtensionMd(footpath).length ){
-         return reject(`Ruta:${footpath} no es o no contiende archivo(os) Markdown`)
+       if (filtersPathsExtensionMd(footpath).length===0 ){
+         return reject('Ruta:No es o no contiende archivo(os) Markdown')
        }
        else {
          if (!allFindLinksContent(footpath).length) {
-           return reject(`Ruta:${footpath} ,nose encontro ningun link.`)
+           return reject('Ruta:nose encontro ningun link.')
          }
          else {
            if (options === undefined || !options.validate) {
@@ -25,7 +23,7 @@ import {
              return resolve(allFindLinksContent(footpath))
            }
            else {
-             resolve(Promise.all(statusLinksFileContent(footpath)).then(res => { return res }))
+             resolve(Promise.all(statusLinksFileContent(footpath)).then(res => { return res }).catch(err => {return err}))
              
            }
          }
@@ -35,4 +33,3 @@ import {
      })
    
 }
-//mdLinks('proof',{validate:true}).then(res=>console.log(res)).catch(err=>console.log(err))

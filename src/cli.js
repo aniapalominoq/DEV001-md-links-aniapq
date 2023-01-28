@@ -1,4 +1,4 @@
-
+#!/usr/bin/env node
 import colors from 'colors'
 import { contentHelp, menu, pause, readInput } from './viewUser.js'
 import { mdLinks } from './mdLinks.js'
@@ -16,7 +16,8 @@ const mainOptions = async () => {
         console.log('Option:--validate')
         mdLinks(ruta,{validate:true})
           .then(res=>console.log(res))
-          .catch(error=>console.log(error))
+          .catch(error => console.log(error))
+        console.log('Cargando...'.magenta)
        
         break;
       case '2':
@@ -29,7 +30,8 @@ const mainOptions = async () => {
              console.log('Unique',uniqueLinks(res))
             })
           .catch(error=>console.log(error))
-        
+         console.log('Cargando...'.magenta)
+       
         break;
       case '3':
         console.clear()
@@ -41,20 +43,21 @@ const mainOptions = async () => {
            console.log('Unique :',uniqueLinks(res))
            console.log('Broken :',brokenLinks(res))
          })
-          .catch(error=>console.log(error))
+          .catch(error => console.log(error))
+        
+        console.log('Cargando...'.magenta)
        
         break;
       
       case '4':
         console.clear()
         contentHelp()
+
         break;
       case '0':
      console.clear()
      console.log('--exit')
         break;
-     default:
-     contentHelp()
     }
     await pause()
   } while(opt!=0)
