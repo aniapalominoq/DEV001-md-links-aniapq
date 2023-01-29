@@ -1,5 +1,7 @@
 import inquirer from 'inquirer'
 import colors from 'colors'
+import { table } from 'table';
+import figlet from 'figlet';
 
 
 let date_ob = new Date();
@@ -18,30 +20,41 @@ export const menu = async () => {
   const questions = [{
   type: 'list',
   name: 'options',
-  message: 'Que quieres hacer, con la ruta ingresada?',
+  message: 'What do you want to do, with the path entered?'.yellow,
   choices: [
     {
       value: '1',
-      name: `${'1.'.green} --validate`
+      name: `--validate`.grey
     },
     {
       value: '2',
-      name: `${'2.'.green} --stats`
+      name: `--stats`.grey
     },
     {
       value: '3',
-      name: `${'3.'.green} --stats --validate`
+      name: `--stats --validate`.grey
 
       },
        {
         value: '4',
-        name:`${'4.'.green}--help`
+        name:`--help`.grey
       },
         {
         value: '0',
-        name: `${'0.'.red}--exit`
+        name: `--exit`.red, 
       }
     ]
+}] 
+
+  const { options} = await inquirer.prompt(questions)
+  return options
+}
+export const tableValidate = async () => {
+  const questions = [{
+  type: 'input',
+  name: 'options',
+  message: 'Do you want to validate the \nlinks contained in the file?'.yellow,
+  
 }] 
 
   const { options} = await inquirer.prompt(questions)
@@ -50,34 +63,41 @@ export const menu = async () => {
 
 
 export const contentHelp = () => {
-  
-  console.log(`${'∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞---Options:--∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞'.cyan}`)
-  console.log(`${'     --validate         '.grey}: ${'Print href, text, file, message(ok or fail) and status.'.cyan}`)
-  console.log(`${'     --stats            '.grey}: ${'Print total and unique links.'.cyan}`)
-  console.log(`${'     --stats --validate '.grey}: ${'Print total, unique and broken links.'.cyan}`)
-  console.log(`${'     --help             '.grey}: ${'Show all the options.'.cyan}`)
-  console.log(`${'     --exit             '.grey}: ${'Exit the program.'.cyan}`)
-  console.log(`${'∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞'.cyan}`)
+  const data = [
+   
+    ['Options'.yellow, 'Result'.yellow],
+    ['--validate'.grey,'Print href, text, file, ok(ok or fail) and status.'.white],
+    ['--stats'.grey, 'Print total and unique links.'.white],
+    ['--stats --validate'.grey, 'Print total, unique and broken links.'.white],
+    ['--help'.grey,  'Show all the options.'.white],
+    ['--exit'.grey, 'Exit the program.'.white],
+  ]
+   const config = {
+  columns: {
+    1: { width: 60 }
+  },
+ 
+  }
+  return console.log(colors.grey(table(data, config)))
 }
  
-export const readInput = async() => {
+export const readInput = async () => {
   console.clear()
-  console.log(`${'∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞- '}`.yellow)
-  console.log(`             ${'maskay-linsk-md'.underline} ${'Library'.brightBlue}`)
-  console.log(`${'∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞- '}`.yellow)
-    console.log('\n');
-  console.log(`                            today : ${date}-${month}-${year}`.yellow);
-  console.log('\n');
+  console.log(`${'∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞ '}`.yellow);
+   console.log(colors.yellow(figlet.textSync('maskay-linsk-md')));
+  console.log(`${'∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞ \n'}`.yellow);
 
-
+  console.log(`                                                           today : ${date}-${month}-${year}`.yellow);
+  console.log('Hello,'.yellow, `${process.env.USERNAME}`.green);
+  console.log('-------------------------------------------------------------------------------------'.grey)
  const inputs = [
-    {
+   {
      type: 'input',
     name: 'filePath',
-      message:`enter the path of a file`,
+      message:`Enter the path of a file`.yellow,
     
     validate(value) {
-        if (value.length === 0) return 'enter the path of a file'  
+        if (value.length === 0) return 'Enter the path of a file'.yellow  
      return true
       }
   }]
@@ -93,10 +113,11 @@ export const pause = async () => {
     {
       type: 'input',
       name: 'enter',
-      message: `Press ${'enter'.green} to continue...`
+      message: `Press ${'enter'.green} to continue...`. yellow,
     }
   ];
-  console.log('\n');
-await inquirer.prompt(question)
+ 
+  await inquirer.prompt(question)
+ 
 }
 
