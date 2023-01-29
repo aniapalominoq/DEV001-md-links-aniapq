@@ -113,9 +113,9 @@ export function statusLinksFileContent(footpath) {
         if (response.status >= 200 && response.status < 400) return { ...elem, status: response.status, ok: 'ok' }
         else if (response.status >= 400 && response.status < 500) return { ...elem, status: response.status, ok: 'fail' }
       })
-     /*  .catch(() => {
+     .catch(() => {
         return {...elem, status: `Does not answer`, ok: 'fail' }
-      }) */
+      }) 
     //.finally(() => console.log('esto se carga si o si...'))
   ) 
  return arrayFetch
