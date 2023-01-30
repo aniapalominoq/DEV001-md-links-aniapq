@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import colors from 'colors'
 import { table } from 'table'
-import { contentHelp, menu, pause, readInput,tableValidate } from './viewUser.js'
+import { contentHelp, menu, pause, readInput} from './viewUser.js'
 import { mdLinks } from './mdLinks.js'
 import { brokenLinks, fullLinks, uniqueLinks } from './functionsAll.js'
 
@@ -12,13 +12,34 @@ const mainOptions = async () => {
   do {
     opt = await menu()
     switch (opt) {
+
       case '1':
-        console.clear()
-        console.log('help\n-----------------------------------\n' ,`${' true '.green}`,':Validate the links\n ',`${'false'.red}`,':Not validate the links\n-----------------------------------\n ')
-        const linkTrue = await tableValidate();
-        
-        if (linkTrue.toLowerCase()==='true') {
-      
+         console.clear()
+             mdLinks(ruta, { validate: false })
+            .then(res => {
+              const title = [['HREF'.yellow, 'TEXT'.yellow, 'PATH'.yellow]]
+              const dato = title.concat(res.map(elem => Object.values(elem)))
+              const config = {
+                columns: {
+                  0: { width: 40 },
+                  2: { width: 55 },
+               
+                },
+                header: {
+                  alignment: 'center',
+                  content: 'Table with basic information'.yellow,
+                },
+              }
+              console.log('\n');
+              console.log(colors.grey(table(dato, config)))
+            
+            })
+            .catch(error => console.log(error))
+
+
+        break;
+      case '2':
+       console.clear()
           mdLinks(ruta, { validate: true })
             .then(res => {
               const title = [['HREF'.yellow, 'TEXT'.yellow, 'PATH'.yellow, 'STATUS'.yellow, 'OK'.yellow]]
@@ -39,38 +60,11 @@ const mainOptions = async () => {
             
             })
             .catch(error => console.log(error))
-        } else if(linkTrue.toLowerCase()==='false'|| linkTrue===''){
-               console.clear()
-             mdLinks(ruta, { validate: false })
-            .then(res => {
-              const title = [['HREF'.yellow, 'TEXT'.yellow, 'PATH'.yellow]]
-              const dato = title.concat(res.map(elem => Object.values(elem)))
-              const config = {
-                columns: {
-                  0: { width: 40 },
-                  2: { width: 55 },
-               
-                },
-                header: {
-                  alignment: 'center',
-                  content: '--validate'.yellow,
-                },
-              }
-              console.log('\n');
-              console.log(colors.grey(table(dato, config)))
-            
-            })
-            .catch(error => console.log(error))
-
-
-        }
-        else {
-          console.log('Sorry wrong choice ☹')
-        }
-        break;
-      case '2':
-        console.clear()
        
+        break;
+      case '3':
+        console.clear()
+
          mdLinks(ruta,{validate:false})
            .then(res => { 
                const dato = [
@@ -94,7 +88,7 @@ const mainOptions = async () => {
             })
           .catch(error=>console.log(error))
         break;
-      case '3':
+      case '4':
         console.clear()
         console.log('\n');
        mdLinks(ruta,{validate:true})
@@ -123,7 +117,7 @@ const mainOptions = async () => {
           .catch(error => console.log(error))
         break;
       
-      case '4':
+      case '5':
         console.clear()
         contentHelp()
 
