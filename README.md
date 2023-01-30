@@ -1,6 +1,6 @@
 #  Welcome 👩‍💻
 
-<img src="maskay-links-md.PNG">
+<img src="img/maskay-links-md.PNG">
 
 
 # contents
@@ -26,16 +26,16 @@ The maskay-links-md library parses files with the extension [Markdown](https://e
 # [2 . Project flow chart](#2-Project-flow-chart)
   - ## [API development](#-API)
 
-  <img src="API.PNG">
+  <img src="img/API.PNG">
 
   - ## [CLI(Command Line Interface) Development](#-CLI)
 
-  <img src="CLI.PNG">
+  <img src="img/CLI.PNG">
 
 # [3. Documentation](#3-Documentation)
  - ## [Installation](#Installation)
  ```
- npm 
+ npm i maskay-links-md
  ```
 
 - ## [Usage](#-Usage)
@@ -127,23 +127,26 @@ For example:
 ```
  Results :
  
-  <img src="1preview.png" width=30 height=30>Open the terminate and run maskay-links-md
-  <img src="0.PNG">
+  <img src="img/1preview.png" width=30 height=30 >Open the terminate and run maskay-links-md
 
-  <img src="2preview.png" width=30 height=30>Result when executing the option `--default`
-  <img src="1.PNG">
+  <img src="img/0.PNG" height=320 >
 
-  <img src="3preview.png" width=30 height=30>Result when executing the option `--validate`
-  <img src="2.PNG">
+  <img src="img/2preview.png" width=30 height=30>Result when executing the option `--default`
 
-  <img src="4preview.png" width=30 height=30>Result when executing the option `--stats`
+  <img src="img/1.PNG">
 
-  <img src="3.PNG" width=210>
+  <img src="img/3preview.png" width=30 height=30>Result when executing the option `--validate`
 
-  <img src="5preview.png" width=30 height=30>Result when executing the option `--stats --validate`
+  <img src="img/2.PNG">
 
-  <img src="4.PNG" height=110>
+  <img src="img/4preview.png" width=30 height=30>Result when executing the option `--stats`
 
-  <img src="6preview.png" width=30 height=30>Result when executing the option `--help`
+  <img src="img/3.PNG" width=210>
 
-  <img src="5.PNG" height=150>
+  <img src="img/5preview.png" width=30 height=30>Result when executing the option `--stats --validate`
+
+  <img src="img/4.PNG" height=110>
+
+  <img src="img/6preview.png" width=30 height=30>Result when executing the option `--help`
+
+  <img src="img/5.PNG" height=150>
