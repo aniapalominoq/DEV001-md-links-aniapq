@@ -21,22 +21,26 @@ export const menu = async () => {
   type: 'list',
   name: 'options',
   message: 'What do you want to do, with the path entered?'.yellow,
-  choices: [
-    {
+    choices: [
+  {
       value: '1',
-      name: `--validate`.grey
+      name: `--default`.grey
     },
     {
       value: '2',
-      name: `--stats`.grey
+      name: `--validate`.grey
     },
     {
       value: '3',
+      name: `--stats`.grey
+    },
+    {
+      value: '4',
       name: `--stats --validate`.grey
 
       },
        {
-        value: '4',
+        value: '5',
         name:`--help`.grey
       },
         {
@@ -49,7 +53,8 @@ export const menu = async () => {
   const { options} = await inquirer.prompt(questions)
   return options
 }
-export const tableValidate = async () => {
+
+/* export const tableValidate = async () => {
   const questions = [{
   type: 'input',
   name: 'options',
@@ -60,7 +65,7 @@ export const tableValidate = async () => {
   const { options} = await inquirer.prompt(questions)
   return options
 }
-
+ */
 
 export const contentHelp = () => {
   const data = [

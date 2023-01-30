@@ -19,7 +19,7 @@ import {
          }
          else {
            if (options === undefined || !options.validate) {
-             console.log('Recuerde que para validar los links, elegir la option {validate:true}')
+             console.log('Recuerde que para validar los links, elegir la option --validate')
              return resolve(allFindLinksContent(footpath))
            }
            else {
