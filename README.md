@@ -150,3 +150,12 @@ For example:
   <img src="img/6preview.png" width=30 height=30>Result when executing the option `--help`
 
   <img src="img/5.PNG" height=150>
+
+   - ##  Source : 
+    
+   <a herf="https://github.com/Laboratoria/DEV001-md-links" >Laboratoria</a>
+
+  - ##  Author : 
+  👩 <a herf="https://github.com/aniapalominoq" >Melania Palomino </a>
+
+[<img src="https://img.shields.io/github/followers/meli2?label=follow&style=social" height="22" title="Follow me" />](https://github.com/meli2)
