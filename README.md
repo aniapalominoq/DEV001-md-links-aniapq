@@ -11,10 +11,10 @@
   - [API](#-API)
   - [CLI](#-CLI)
 * [3 . Documentation](#3-Documentation)
-     - [Installation](#-Installation)
-     - [usage](#-usage)
-     - [Commands](#-Commands)
-     - [Example](#-Example)
+  - [Installation](#-Installation)
+  - [usage](#-usage)
+  - [Commands](#-Commands)
+  - [Example](#-Example)
 
 ---
 
@@ -26,11 +26,11 @@ The maskay-links-md library parses files with the extension [Markdown](https://e
 # [2 . Project flow chart](#2-Project-flow-chart)
   - ## [API development](#-API)
 
-  <img src="img/API.PNG">
+  <img src="https://github.com/aniapalominoq/DEV001-md-links-aniapq/blob/main/img/API.png" >
 
   - ## [CLI(Command Line Interface) Development](#-CLI)
 
-  <img src="img/CLI.PNG">
+  <img src="https://github.com/aniapalominoq/DEV001-md-links-aniapq/blob/main/img/CLI.png"  >
 
 # [3. Documentation](#3-Documentation)
  - ## [Installation](#Installation)
@@ -127,33 +127,33 @@ For example:
 ```
  Results :
  
-  <img src="img/1preview.png" width=30 height=30 >Open the terminate and run maskay-links-md
+  <img src="img/1preview.png" width=50 height=45 >Open the terminate and run maskay-links-md
 
   <img src="img/0.PNG" height=320 >
 
-  <img src="img/2preview.png" width=30 height=30>Result when executing the option `--default`
+  <img src="img/2preview.png" width=50 height=45 >Result when executing the option `--default`
 
   <img src="img/1.PNG">
 
-  <img src="img/3preview.png" width=30 height=30>Result when executing the option `--validate`
+  <img src="img/3preview.png" width=50 height=45 >Result when executing the option `--validate`
 
   <img src="img/2.PNG">
 
-  <img src="img/4preview.png" width=30 height=30>Result when executing the option `--stats`
+  <img src="img/4preview.png" width=50 height=45 >Result when executing the option `--stats`
 
   <img src="img/3.PNG" width=210>
 
-  <img src="img/5preview.png" width=30 height=30>Result when executing the option `--stats --validate`
+  <img src="img/5preview.png" width=50 height=45 >Result when executing the option `--stats --validate`
 
   <img src="img/4.PNG" height=110>
 
-  <img src="img/6preview.png" width=30 height=30>Result when executing the option `--help`
+  <img src="img/6preview.png"width=50 height=45 >Result when executing the option `--help`
 
   <img src="img/5.PNG" height=150>
 
    - ##  Source : 
-    
-   <a herf="https://github.com/Laboratoria/DEV001-md-links" >Laboratoria</a>
+
+   <a herf="https://github.com/Laboratoria/DEV001-md-links" >Repository of Laboratoria</a> 
 
   - ##  Author : 
   👩 <a herf="https://github.com/aniapalominoq" >Melania Palomino </a>

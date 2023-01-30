@@ -7,7 +7,7 @@
   "engines": {
     "node": ">=16.x"
   },
-  "description": "maskay-links-md, es una libreria creada en Node.js , su objetivos es verificar el estado de todo los links existentes dentro de un archivo con extension .md",
+  "description": "maskay-links-md, is a library created in Node.js, its objectives is to verify the status of all existing links within a file with an .md extension",
   "main": "src/mdLinks.js",
   "type": "module",
   "directories": {
