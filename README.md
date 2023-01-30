@@ -153,9 +153,10 @@ For example:
 
    - ##  Source : 
 
-   <a herf="https://github.com/Laboratoria/DEV001-md-links" >Repository of Laboratoria</a> 
+   <a herf="https://github.com/Laboratoria/DEV001-md-links" target="_blank" >Repository of Laboratoria</a> 
 
   - ##  Author : 
-  👩 <a herf="https://github.com/aniapalominoq" >Melania Palomino </a>
 
-[<img src="https://img.shields.io/github/followers/meli2?label=follow&style=social" height="22" title="Follow me" />](https://github.com/meli2)
+  👩 <a herf="https://github.com/aniapalominoq" target="_blank" > Melania Palomino </a>
+
+[<img src="https://img.shields.io/github/followers/meli2?label=follow&style=social" height="22" title="Follow me" />](https://github.com/aniapalominoq)
