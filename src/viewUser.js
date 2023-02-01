@@ -89,11 +89,19 @@ export const contentHelp = () => {
 export const readInput = async () => {
   console.clear()
   console.log(`${'∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞ '}`.yellow);
-   console.log(colors.yellow(figlet.textSync('maskay-linsk-md')));
+   console.log(colors.yellow(figlet.textSync('maskay-links-md')));
   console.log(`${'∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞-∞ \n'}`.yellow);
 
   console.log(`                                                           today : ${date}-${month}-${year}`.yellow);
-  console.log('Hello,'.yellow, `${process.env.USERNAME}`.green);
+  if (process.env.USERNAME) {
+    console.log('Hello,'.yellow, `${process.env.USERNAME}`.green )
+  }
+  else if (process.env.USER) {
+    console.log('Hello,'.yellow, `${process.env.USER}`.green )
+  }
+    else {
+     console.log('Hello,'.yellow,`(*^_^*)`.green)
+    }
   console.log('-------------------------------------------------------------------------------------'.grey)
  const inputs = [
    {

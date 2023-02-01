@@ -1,6 +1,6 @@
 {
   "name": "maskay-links-md",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "bin": {
     "maskay-links-md": "./src/cli.js"
   },
