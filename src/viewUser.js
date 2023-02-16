@@ -51,19 +51,6 @@ export const menu = async () => {
   return options;
 };
 
-/* export const tableValidate = async () => {
-  const questions = [{
-  type: 'input',
-  name: 'options',
-  message: 'Do you want to validate the \nlinks contained in the file?'.yellow,
-  
-}] 
-
-  const { options} = await inquirer.prompt(questions)
-  return options
-}
- */
-
 export const contentHelp = () => {
   const data = [
     ["Options".yellow, "Result".yellow],
@@ -100,7 +87,7 @@ export const readInput = async () => {
     `                                                           today : ${date}-${month}-${year}`
       .yellow
   );
-  if (process.env.USERNAM) {
+  if (process.env.USERNAME) {
     console.log("Hello,".yellow, `${process.env.USERNAME}`.green);
   } else if (process.env.USER) {
     console.log("Hello,".yellow, `${process.env.USER}`.green);
