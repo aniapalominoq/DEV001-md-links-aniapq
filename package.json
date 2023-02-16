@@ -8,7 +8,7 @@
     "node": ">=16.x"
   },
   "description": "maskay-links-md, is a library created in Node.js, its objectives is to verify the status of all existing links within a file with an .md extension",
-  "main": "src/mdLinks.js",
+  "main": "./src/mdLinks.js",
   "type": "module",
   "directories": {
     "test": "test"
